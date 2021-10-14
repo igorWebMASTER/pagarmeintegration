@@ -1,5 +1,6 @@
 import 'package:dio/native_imp.dart';
-import 'package:pagarmeintegration/shared/payment/client/interceptors/api_key_interceptor.dart';
+
+import 'interceptors/api_key_interceptor.dart';
 
 class PaymentDio extends DioForNative {
   PaymentDio() {

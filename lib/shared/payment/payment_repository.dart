@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:pagarmeintegration/shared/payment/models/transaction_model.dart';
+
+import 'models/transaction_model.dart';
 
 abstract class PaymentRepository {
   Future<String> create(TransactionModel transaction);
@@ -9,9 +10,9 @@ abstract class PaymentRepository {
 
 class PaymentRepositoryImpl implements PaymentRepository {
   final Dio client;
-
-  PaymentRepositoryImpl({required this.client});
-
+  PaymentRepositoryImpl({
+    required this.client,
+  });
   @override
   Future<String> create(TransactionModel transaction) async {
     try {
@@ -27,7 +28,9 @@ class PaymentRepositoryImpl implements PaymentRepository {
   @override
   Future<String> createCreditCard(String hash) async {
     try {
-      final response = await client.post("/cards", data: {"card_hash": hash});
+      final response = await client.post("/cards", data: {
+        "card_hash": hash,
+      });
       return response.data['id'];
     } catch (e) {
       throw e;
